@@ -16,8 +16,7 @@ class NewsController < ApplicationController
   def create
     @news = News.new(news_params)
     if @news.save
-      flash[:notice] = 'News was successfully created.' 
-      redirect_to @news
+      redirect_to(@news, notice: 'News was successfully created.')
     else
       render :new
     end
@@ -25,8 +24,7 @@ class NewsController < ApplicationController
 
   def update
     if @news.update(news_params)
-      flash[:notice] = 'News was successfully updated.'
-      redirect_to @news
+      redirect_to(@news, notice: 'News was successfully updated.')
     else
       render :edit
     end
@@ -34,8 +32,7 @@ class NewsController < ApplicationController
 
   def destroy
     @news.destroy
-    flash[:notice] = 'News was successfully destroyed.'
-    redirect_to news_index_url
+    redirect_to(news_index_url, notice: 'News was successfully destroyed.')
   end
 
   private
